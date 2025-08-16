@@ -1,0 +1,12 @@
+<!-- card-swipe.component.html -->
+<div class="card-wrap">
+  <ion-card #cardElement>
+    <img [src]="card.image" />
+    <ion-card-header>
+      <ion-card-title>{{ card.character }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ card.description }}
+    </ion-card-content>
+  </ion-card>
+</div>

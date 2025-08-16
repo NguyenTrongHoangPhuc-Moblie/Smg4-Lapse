@@ -1,0 +1,20 @@
+/* card-swipe.component.scss */
+ion-card {
+  position: absolute;
+  //width: 90%;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+  //transform: translateX(-60%);
+  width: 200px;
+}
+
+.swipe-card {
+  transform-origin: bottom center; /* 👈 xoay quanh đáy */
+}
+
+.card-wrap {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    
+}
