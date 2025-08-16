@@ -1,0 +1,7 @@
+{
+  "name": "smg4-lapse",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
