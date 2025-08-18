@@ -6,6 +6,7 @@ ion-card {
   will-change: transform;
   //transform: translateX(-60%);
   width: 200px;
+  top: 70px;
 }
 
 .swipe-card {
@@ -18,3 +19,9 @@ ion-card {
     justify-content: center;
     
 }
+
+.choice {
+  font-size: 18px;
+  font-weight: bold;
+}
+

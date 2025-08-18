@@ -1,5 +1,6 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { GestureController } from '@ionic/angular';
+import { StatsService } from 'src/services/stats.service';
 
 @Component({
   selector: 'app-card-swipe',
@@ -9,16 +10,21 @@ import { GestureController } from '@ionic/angular';
 })
 export class CardSwipeComponent {
   @Input() card: any;
-  @Output() swiped = new EventEmitter<"left" | "right">();
+  @Output() swiped = new EventEmitter<{direction: 'left' | 'right' | null, card: any}>();
+  @Output() preview = new EventEmitter<{direction: 'left' | 'right' | null, card: any, processOpacity: any}>();
 
   @ViewChild('cardElement', { read: ElementRef }) cardElement!: ElementRef;
 
-  private startX = 0;
-  private startY = 0;
+  startX = 0;
+  startY = 0;
+  leftOpacity = 0;
+  rightOpacity = 0;
 
   constructor(
     private gestureCtrl: GestureController,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private zone: NgZone,
+    private statsService: StatsService
   ) { }
   ngOnChanges() {
     if (this.cardElement) {
@@ -45,6 +51,25 @@ export class CardSwipeComponent {
         const dy = ev.deltaY;
         const rotate = dx / 40;
 
+        // Hiển thị mờ dần theo độ kéo
+        const progress = Math.min(Math.abs(dx) / 100, 1); // max = 1
+
+        this.zone.run(() => {
+          if (dx > 0) { // kéo phải
+            this.rightOpacity = progress;
+            this.leftOpacity = 0;
+            this.preview.emit({direction: 'right', card: this.card, processOpacity: progress});
+          } else if (dx < 0) { // kéo trái
+            this.leftOpacity = progress;
+            this.rightOpacity = 0;
+            this.preview.emit({direction: 'left', card: this.card, processOpacity: progress});
+          } else {
+            this.leftOpacity = this.rightOpacity = 0;
+            this.preview.emit({direction: null, card: this.card, processOpacity: 0});
+          }
+        });
+
+
         this.renderer.setStyle(
           this.cardElement.nativeElement,
           'transform',
@@ -52,7 +77,11 @@ export class CardSwipeComponent {
         );
       },
       onEnd: ev => {
-        const dx = ev.deltaX - this.startX;
+        this.zone.run(() => {
+          this.leftOpacity = this.rightOpacity = 0;
+          this.preview.emit({direction: null, card: this.card, processOpacity: 0});
+        })
+        
         const screenWidth = window.innerWidth;
         const moveOutWidth = screenWidth * 0.35; // ngưỡng quẹt
         const cardWidth = this.cardElement.nativeElement.offsetWidth;
@@ -60,17 +89,19 @@ export class CardSwipeComponent {
         this.cardElement.nativeElement.style.transition = '0.5s ease-out';
 
         if (ev.deltaX > moveOutWidth) {
-          //this.renderer.setStyle(this.cardElement.nativeElement, 'transform', `translateX(${window.innerWidth}px)`);
-
+          const effects = this.card['right' + 'Effect'];
+          this.statsService.applyEffect(effects);
           this.cardElement.nativeElement.style.transform = `translateX(${screenWidth + cardWidth}px)`;
           this.cardElement.nativeElement.addEventListener('transitionend', () => {
-            this.swiped.emit('right');
+            this.swiped.emit({direction: 'right', card: this.card});
           }, { once: true });
         } else if (ev.deltaX < -moveOutWidth) {
+          const effects = this.card['left' + 'Effect'];
+          this.statsService.applyEffect(effects);
           //this.renderer.setStyle(this.cardElement.nativeElement, 'transform', `translateX(-${window.innerWidth}px)`);
           this.cardElement.nativeElement.style.transform = `translateX(-${screenWidth + cardWidth}px)`;
           this.cardElement.nativeElement.addEventListener('transitionend', () => {
-            this.swiped.emit('left');
+            this.swiped.emit({direction: 'left', card: this.card});
           }, { once: true });
         } else {
           //this.renderer.setStyle(this.cardElement.nativeElement, 'transform', '');

@@ -5,23 +5,10 @@
 </ion-header>
 
 <ion-content>
-  <!-- Stats Bar -->
-  <div class="stats-bar d-flex justify-content-center align-items-center">
-    <div class="stat" [ngClass]="{'increase': lastChange.health > 0, 'decrease': lastChange.health < 0}">
-      ❤️: {{ gameService.stats.health }}
-    </div>
-    <div class="stat" [ngClass]="{'increase': lastChange.logic > 0, 'decrease': lastChange.logic < 0}">
-      🧠: {{ gameService.stats.logic }}
-    </div>
-    <div class="stat" [ngClass]="{'increase': lastChange.belief > 0, 'decrease': lastChange.belief < 0}">
-      🙏: {{ gameService.stats.belief }}
-    </div>
-    <div class="stat" [ngClass]="{'increase': lastChange.reality > 0, 'decrease': lastChange.reality < 0}">
-      🌌: {{ gameService.stats.reality }}
-    </div>
-  </div>
-
+  <app-statsbar
+    [highlightedStats]="highlightedStats"
+  ></app-statsbar>
   <div class="card-stack">
-    <app-card-swipe *ngFor="let c of cards; let i = index; trackBy: trackById" [card]="c" (swiped)="onCardSwiped($event, i)"></app-card-swipe>
+    <app-card-swipe *ngFor="let c of cards; let i = index; trackBy: trackById" [card]="c" (swiped)="onCardSwiped($event, i)" (preview)="onPreview($event)"></app-card-swipe>
   </div>
 </ion-content>

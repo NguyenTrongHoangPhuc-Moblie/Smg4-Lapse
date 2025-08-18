@@ -1,12 +1,20 @@
 <!-- card-swipe.component.html -->
 <div class="card-wrap">
+  <ion-card-content class="ion-text-center">
+      {{ card.description }}
+  </ion-card-content>
   <ion-card #cardElement>
-    <img [src]="card.image" />
-    <ion-card-header>
+    <ion-card-content class="ion-display-flex ion-justify-content-between">
+      <div class="choice left" [style.opacity]="leftOpacity">
+        {{card.leftChoice}}
+      </div>
+      <div class="choice right" [style.opacity]="rightOpacity">
+        {{card.rightChoice}}
+      </div>
+    </ion-card-content>
+    <img [src]="card.image"/>
+    <ion-card-header class="ion-text-center">
       <ion-card-title>{{ card.character }}</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      {{ card.description }}
-    </ion-card-content>
   </ion-card>
 </div>

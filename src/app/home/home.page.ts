@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { Effects, EventCard } from 'src/models/event-card.model';
 import { GameService } from 'src/services/game.service';
-
+import { StatsbarComponent } from '../statsbar/statsbar.component';
 
 @Component({
   selector: 'app-home',
@@ -10,19 +10,12 @@ import { GameService } from 'src/services/game.service';
   standalone: false,
 })
 export class HomePage {
-  private allCards: EventCard[] = [];
-  // cards = [
-  //   { title: 'Card 1', description: 'Nội dung thẻ 1' },
-  //   { title: 'Card 2', description: 'Nội dung thẻ 2' },
-  //   { title: 'Card 3', description: 'Nội dung thẻ 3' }
-  // ];
   cards: EventCard[] = [];
-  // Theo dõi hiệu ứng thay đổi gần nhất
-  lastChange: Effects = { health: 0, logic: 0, belief: 0, reality: 0 };
-
   // Preview hiệu ứng khi hover nút (hoặc chuẩn bị chọn)
   previewEffects: Effects = { health: 0, logic: 0, belief: 0, reality: 0 };
+  previewDirection: 'left' | 'right' | null = null;
 
+  highlightedStats: { [key: string]: boolean } = {};
 
   constructor(
     public gameService: GameService,
@@ -45,8 +38,34 @@ export class HomePage {
     return item.uid || item.id;  // ưu tiên uid mới tạo
   }
 
-  onCardSwiped(direction: 'left' | 'right', index: number) {
-    console.log(`Card ${index} swiped ${direction}`);
+  onPreview(event: { direction: 'left' | 'right' | null, card: any, processOpacity: any }) {
+    if (!event.direction) {
+      this.highlightedStats = {}; // reset
+      return;
+    }
+
+    const effects = event.card[event.direction + 'Effect'];
+    // 👆 lấy ra leftEffect hoặc rightEffect tùy hướng
+
+    // Lọc ra các chỉ số thay đổi
+    this.highlightedStats = Object.keys(effects).reduce((acc, key) => {
+      if (effects[key] !== 0) {
+        acc[key] = event.processOpacity;  // đánh dấu stat này bị ảnh hưởng
+      }
+      return acc;
+    }, {} as any);
+  }
+
+  onCardSwiped(event: { direction: 'left' | 'right' | null, card: any }, index: number) {
+    if (!event.direction) return;
+    
+    const effects = event.card[event.direction + 'Effect'];
+
+    this.gameService.stats.health += effects.health || 0;
+    this.gameService.stats.logic += effects.logic || 0;
+    this.gameService.stats.belief += effects.belief || 0;
+    this.gameService.stats.reality += effects.reality || 0;
+    
     const nextCard = {
       ...this.gameService.getRandomCard(),
       uid: Date.now().toString()  // ép unique id để tránh trùng
@@ -61,5 +80,5 @@ export class HomePage {
       ];
       this.cdr.detectChanges(); // 👈 ép Angular render lại
     }, 100);
-}
+  }
 }

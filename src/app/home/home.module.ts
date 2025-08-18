@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { CardSwipeComponent } from '../card-swipe/card-swipe.component';
+import { StatsbarComponent } from '../statsbar/statsbar.component';
 
 
 @NgModule({
@@ -15,6 +16,6 @@ import { CardSwipeComponent } from '../card-swipe/card-swipe.component';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage, CardSwipeComponent]
+  declarations: [HomePage, CardSwipeComponent, StatsbarComponent],
 })
 export class HomePageModule {}
