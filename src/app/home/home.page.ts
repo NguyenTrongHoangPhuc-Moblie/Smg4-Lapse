@@ -46,7 +46,7 @@ export class HomePage {
 
     const effects = event.card[event.direction + 'Effect'];
     // 👆 lấy ra leftEffect hoặc rightEffect tùy hướng
-
+    
     // Lọc ra các chỉ số thay đổi
     this.highlightedStats = Object.keys(effects).reduce((acc, key) => {
       if (effects[key] !== 0) {
@@ -65,7 +65,8 @@ export class HomePage {
     this.gameService.stats.logic += effects.logic || 0;
     this.gameService.stats.belief += effects.belief || 0;
     this.gameService.stats.reality += effects.reality || 0;
-    
+
+
     const nextCard = {
       ...this.gameService.getRandomCard(),
       uid: Date.now().toString()  // ép unique id để tránh trùng

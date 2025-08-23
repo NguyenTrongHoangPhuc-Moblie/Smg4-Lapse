@@ -24,12 +24,10 @@ export class GameService {
     }
 
     setCards(cards: EventCard[]) {
-        console.log(cards);
         this.allCards = cards;
     }
 
     getRandomCard(): EventCard {
-        console.log("Nạp thẻ");
         const unlocked = this.allCards.filter(c => c.isUnlocked);
 
         // loại bỏ card cuối cùng

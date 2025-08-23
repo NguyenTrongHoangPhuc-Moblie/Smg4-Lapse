@@ -90,19 +90,21 @@ export class CardSwipeComponent {
 
         if (ev.deltaX > moveOutWidth) {
           const effects = this.card['right' + 'Effect'];
-          this.statsService.applyEffect(effects);
-          this.cardElement.nativeElement.style.transform = `translateX(${screenWidth + cardWidth}px)`;
           this.cardElement.nativeElement.addEventListener('transitionend', () => {
             this.swiped.emit({direction: 'right', card: this.card});
           }, { once: true });
+          this.statsService.applyEffect(effects);
+          this.cardElement.nativeElement.style.transform = `translateX(${screenWidth + cardWidth}px)`;
+          
         } else if (ev.deltaX < -moveOutWidth) {
           const effects = this.card['left' + 'Effect'];
-          this.statsService.applyEffect(effects);
-          //this.renderer.setStyle(this.cardElement.nativeElement, 'transform', `translateX(-${window.innerWidth}px)`);
-          this.cardElement.nativeElement.style.transform = `translateX(-${screenWidth + cardWidth}px)`;
           this.cardElement.nativeElement.addEventListener('transitionend', () => {
             this.swiped.emit({direction: 'left', card: this.card});
           }, { once: true });
+          this.statsService.applyEffect(effects);
+          //this.renderer.setStyle(this.cardElement.nativeElement, 'transform', `translateX(-${window.innerWidth}px)`);
+          this.cardElement.nativeElement.style.transform = `translateX(-${screenWidth + cardWidth}px)`;
+          
         } else {
           //this.renderer.setStyle(this.cardElement.nativeElement, 'transform', '');
           this.cardElement.nativeElement.style.transform = '';
@@ -110,5 +112,12 @@ export class CardSwipeComponent {
       }
     });
     gesture.enable(true);
+  }
+
+  startSwipe(direction: 'left' | 'right') {
+    const cardEl = this.cardElement.nativeElement;
+
+    cardEl.style.transition = 'transform 0.6s ease-out';
+    cardEl.style.transform = `translateX(${direction === 'left' ? '-150℅' : '-150%'}) rotate(${direction})`
   }
 }

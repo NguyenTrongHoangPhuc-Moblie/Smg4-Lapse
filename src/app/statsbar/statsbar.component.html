@@ -1,37 +1,46 @@
-<div class="stats-bar ion-display-flex ion-justify-content-between">
+<div class="stat-container">
+  <div class="stat-label">
+    {{label}}
+  </div>
+  <div class="stat-bar">
+    <div class="stat-fill" [class.increase]="effect === 'increase'" [class.decrease]="effect === 'decrease'"
+      [style.height.%]="value"></div>
+  </div>
+</div>
+
+<!-- <div class="stats-bar ion-display-flex ion-justify-content-between">
   <div class="stat ion-display-flex ion-justify-content-center ion-align-items-center"
     [ngClass]="{'increase': lastChange.health > 0, 'decrease': lastChange.health < 0}">
     <div class="attribute">
       ❤️ {{ stats.health | async }}
-      
+
     </div>
     <div class="bar">
-    <div class="bar-effect health" 
-         [ngClass]="effects.health" 
-         [style.width.%]="health">
+      <div class="bar-effect health" #healthBar [ngClass]="effects.health" [style.height.%]="health">
+      </div>
+      <div class="bar-fill" [style.height.%]="health"></div>
+      <ion-icon name="radio-button-off" [style.opacity]="highlightedStats['health'] || 0"></ion-icon>
+
     </div>
-    <div class="bar-fill" [style.width.%]="health"></div>
-    <ion-icon name="radio-button-off" [style.opacity]="highlightedStats['health'] || 0"></ion-icon>
-  </div>
-  <div class="stat ion-display-flex ion-justify-content-center ion-align-items-center"
-    [ngClass]="{'increase': lastChange.logic > 0, 'decrease': lastChange.logic < 0}">
-    <div class="attribute">
-      🧠 {{ stats.logic | async }}
+    <div class="stat ion-display-flex ion-justify-content-center ion-align-items-center"
+      [ngClass]="{'increase': lastChange.logic > 0, 'decrease': lastChange.logic < 0}">
+      <div class="attribute">
+        🧠 {{ stats.logic | async }}
+      </div>
+      <ion-icon name="radio-button-off" [style.opacity]="highlightedStats['logic'] || 0"></ion-icon>
     </div>
-    <ion-icon name="radio-button-off" [style.opacity]="highlightedStats['logic'] || 0"></ion-icon>
-  </div>
-  <div class="stat ion-display-flex ion-justify-content-center ion-align-items-center"
-    [ngClass]="{'increase': lastChange.belief > 0, 'decrease': lastChange.belief < 0}">
-    <div class="attribute">
-      🙏 {{ stats.belief | async }}
+    <div class="stat ion-display-flex ion-justify-content-center ion-align-items-center"
+      [ngClass]="{'increase': lastChange.belief > 0, 'decrease': lastChange.belief < 0}">
+      <div class="attribute">
+        🙏 {{ stats.belief | async }}
+      </div>
+      <ion-icon name="radio-button-off" [style.opacity]="highlightedStats['belief'] || 0"></ion-icon>
     </div>
-    <ion-icon name="radio-button-off" [style.opacity]="highlightedStats['belief'] || 0"></ion-icon>
-  </div>
-  <div class="stat ion-display-flex ion-justify-content-center ion-align-items-center"
-    [ngClass]="{'increase': lastChange.reality > 0, 'decrease': lastChange.reality < 0}">
-    <div class="attribute">
-      🌌 {{ stats.reality | async }}
+    <div class="stat ion-display-flex ion-justify-content-center ion-align-items-center"
+      [ngClass]="{'increase': lastChange.reality > 0, 'decrease': lastChange.reality < 0}">
+      <div class="attribute">
+        🌌 {{ stats.reality | async }}
+      </div>
+      <ion-icon name="radio-button-off" [style.opacity]="highlightedStats['reality'] || 0"></ion-icon>
     </div>
-    <ion-icon name="radio-button-off" [style.opacity]="highlightedStats['reality'] || 0"></ion-icon>
-  </div>
-</div>
+  </div> -->
