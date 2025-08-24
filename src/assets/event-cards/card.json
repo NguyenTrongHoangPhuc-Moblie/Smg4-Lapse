@@ -7,8 +7,8 @@
     "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
     "leftChoice": "Ăn",
     "rightChoice": "Từ chối",
-    "leftEffect": { "health": 10, "logic": -5, "belief": 0, "reality": -5 },
-    "rightEffect": { "health": -5, "logic": 5, "belief": 0, "reality": 0 },
+    "leftEffect": { "health": 0.05, "logic": -0.085, "belief": 0, "reality": -0.085 },
+    "rightEffect": { "health": -0.09, "logic": 0.09, "belief": 0, "reality": 0 },
     "isUnlocked": true
   },
   {
@@ -19,8 +19,8 @@
     "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
     "leftChoice": "Đồng ý",
     "rightChoice": "Từ chối",
-    "leftEffect": { "health": 5, "logic": 5, "belief": 0, "reality": 0 },
-    "rightEffect": { "health": 0, "logic": -5, "belief": 5, "reality": 0 },
+    "leftEffect": { "health": 0.075, "logic": 0.085, "belief": 0, "reality": 0 },
+    "rightEffect": { "health": 0, "logic": -0.085, "belief": 0.09, "reality": 0 },
     "isUnlocked": true
   },
   {
@@ -31,8 +31,8 @@
     "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
     "leftChoice": "Tham gia",
     "rightChoice": "Từ chối",
-    "leftEffect": { "health": -5, "logic": 0, "belief": 10, "reality": -5 },
-    "rightEffect": { "health": 0, "logic": 5, "belief": -5, "reality": 0 },
+    "leftEffect": { "health": -0.05, "logic": 0, "belief": 0.1, "reality": -0.05 },
+    "rightEffect": { "health": 0, "logic": 0.05, "belief": -0.05, "reality": 0 },
     "isUnlocked": true
   },
   {
@@ -43,8 +43,8 @@
     "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
     "leftChoice": "Chơi cùng",
     "rightChoice": "Không",
-    "leftEffect": { "health": 0, "logic": 10, "belief": 0, "reality": -5 },
-    "rightEffect": { "health": 0, "logic": -5, "belief": 0, "reality": 5 },
+    "leftEffect": { "health": 0, "logic": 0.01, "belief": 0, "reality": -0.05 },
+    "rightEffect": { "health": 0, "logic": -0.05, "belief": 0, "reality": 0.05 },
     "isUnlocked": true
   },
   {
@@ -55,8 +55,8 @@
     "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
     "leftChoice": "Đồng ý",
     "rightChoice": "Từ chối",
-    "leftEffect": { "health": 0, "logic": -5, "belief": 10, "reality": -10 },
-    "rightEffect": { "health": 0, "logic": 10, "belief": -5, "reality": 0 },
+    "leftEffect": { "health": 0, "logic": -0.05, "belief": 0.1, "reality": -0.1 },
+    "rightEffect": { "health": 0, "logic": 0.1, "belief": -0.05, "reality": 0 },
     "isUnlocked": true
   },
   {
@@ -67,8 +67,8 @@
     "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
     "leftChoice": "Ăn thử",
     "rightChoice": "Vứt đi",
-    "leftEffect": { "health": 15, "logic": -10, "belief": 5, "reality": -15 },
-    "rightEffect": { "health": 0, "logic": 5, "belief": 0, "reality": 0 },
+    "leftEffect": { "health": 0.15, "logic": -0.1, "belief": 0.05, "reality": -0.15 },
+    "rightEffect": { "health": 0, "logic": 0.05, "belief": 0, "reality": 0 },
     "isUnlocked": true
   },
   {
@@ -79,8 +79,8 @@
     "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
     "leftChoice": "Xin lỗi",
     "rightChoice": "Cãi lại",
-    "leftEffect": { "health": 0, "logic": 5, "belief": 5, "reality": 0 },
-    "rightEffect": { "health": -15, "logic": -5, "belief": 0, "reality": 0 },
+    "leftEffect": { "health": 0, "logic": 0.05, "belief": 0.05, "reality": 0 },
+    "rightEffect": { "health": -0.15, "logic": -0.05, "belief": 0, "reality": 0 },
     "isUnlocked": true
   },
   {
@@ -91,8 +91,8 @@
     "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
     "leftChoice": "Giúp",
     "rightChoice": "Từ chối",
-    "leftEffect": { "health": -5, "logic": 5, "belief": 5, "reality": 0 },
-    "rightEffect": { "health": 0, "logic": -5, "belief": -5, "reality": 5 },
+    "leftEffect": { "health": -0.05, "logic": 0.05, "belief": 0.05, "reality": 0 },
+    "rightEffect": { "health": 0, "logic": -0.05, "belief": -0.05, "reality": 0.05 },
     "isUnlocked": true
   },
   {
@@ -103,8 +103,8 @@
     "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
     "leftChoice": "Nghe",
     "rightChoice": "Không",
-    "leftEffect": { "health": -5, "logic": -5, "belief": 10, "reality": -5 },
-    "rightEffect": { "health": 0, "logic": 5, "belief": -5, "reality": 0 },
+    "leftEffect": { "health": -0.05, "logic": -0.05, "belief": 0.1, "reality": -0.05 },
+    "rightEffect": { "health": 0, "logic": 0.05, "belief": -0.05, "reality": 0 },
     "isUnlocked": true
   },
   {
@@ -115,8 +115,8 @@
     "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
     "leftChoice": "Tin",
     "rightChoice": "Không tin",
-    "leftEffect": { "health": 0, "logic": -5, "belief": 15, "reality": -20 },
-    "rightEffect": { "health": 0, "logic": 10, "belief": -5, "reality": 5 },
+    "leftEffect": { "health": 0, "logic": -0.05, "belief": 0.15, "reality": -0.2 },
+    "rightEffect": { "health": 0, "logic": 0.1, "belief": -0.05, "reality": 0.05 },
     "isUnlocked": true
   }
 ]

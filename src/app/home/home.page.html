@@ -4,36 +4,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div style="display: flex; gap: 12px;">
-    <app-statsbar
-      label="Health"
-      [value]="gameService.stats.health"
-    >
-    </app-statsbar>
-    <app-statsbar
-      label="Logic"
-      [value]="gameService.stats.logic"
-    >
-    </app-statsbar>
-    <app-statsbar
-      label="Belief"
-      [value]="gameService.stats.belief"
-    >
-    </app-statsbar>
-    <app-statsbar
-      label="Reality"
-      [value]="gameService.stats.reality"
-    >
-    </app-statsbar>
-  </div>
-  <!-- <app-statsbar
-    [health]="gameService.stats.health"
-    [logic]="gameService.stats.logic"
-    [belief]="gameService.stats.belief"
-    [reality]="gameService.stats.reality"
+<ion-content style="--background: #ccc">
+  <app-statsbar
     [highlightedStats]="highlightedStats"
-  ></app-statsbar> -->
+  ></app-statsbar>
   <div class="card-stack">
     <app-card-swipe *ngFor="let c of cards; let i = index; trackBy: trackById" [card]="c" (swiped)="onCardSwiped($event, i)" (preview)="onPreview($event)"></app-card-swipe>
   </div>

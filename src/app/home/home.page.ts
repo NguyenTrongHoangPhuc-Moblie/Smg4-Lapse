@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { Effects, EventCard } from 'src/models/event-card.model';
 import { GameService } from 'src/services/game.service';
 import { StatsbarComponent } from '../statsbar/statsbar.component';
@@ -14,12 +14,13 @@ export class HomePage {
   // Preview hiệu ứng khi hover nút (hoặc chuẩn bị chọn)
   previewEffects: Effects = { health: 0, logic: 0, belief: 0, reality: 0 };
   previewDirection: 'left' | 'right' | null = null;
-
+  effects: any;
   highlightedStats: { [key: string]: boolean } = {};
 
   constructor(
     public gameService: GameService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private zone: NgZone,
   ) { }
 
   ngOnInit() {
@@ -46,7 +47,6 @@ export class HomePage {
 
     const effects = event.card[event.direction + 'Effect'];
     // 👆 lấy ra leftEffect hoặc rightEffect tùy hướng
-    
     // Lọc ra các chỉ số thay đổi
     this.highlightedStats = Object.keys(effects).reduce((acc, key) => {
       if (effects[key] !== 0) {
@@ -58,28 +58,19 @@ export class HomePage {
 
   onCardSwiped(event: { direction: 'left' | 'right' | null, card: any }, index: number) {
     if (!event.direction) return;
-    
-    const effects = event.card[event.direction + 'Effect'];
-
-    this.gameService.stats.health += effects.health || 0;
-    this.gameService.stats.logic += effects.logic || 0;
-    this.gameService.stats.belief += effects.belief || 0;
-    this.gameService.stats.reality += effects.reality || 0;
-
-
+    // Replace card after swipe
     const nextCard = {
       ...this.gameService.getRandomCard(),
-      uid: Date.now().toString()  // ép unique id để tránh trùng
+      uid: Date.now().toString()
     };
 
-    // tạo mảng mới => Angular chắc chắn render lại
     setTimeout(() => {
       this.cards = [
         ...this.cards.slice(0, index),
         ...this.cards.slice(index + 1),
         nextCard
       ];
-      this.cdr.detectChanges(); // 👈 ép Angular render lại
-    }, 100);
+      this.cdr.detectChanges();
+    }, 200);
   }
 }

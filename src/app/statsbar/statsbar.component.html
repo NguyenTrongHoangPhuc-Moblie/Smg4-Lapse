@@ -1,10 +1,34 @@
-<div class="stat-container">
-  <div class="stat-label">
-    {{label}}
+<div class="box">
+  <div class="box-attribute">
+    <h3>❤️</h3>
+    <ion-progress-bar [buffer]="gameService.stats.bufferHealth" [value]="gameService.stats.health" class="vertical-progress"
+      [ngClass]="gameService.stats.actionHealth === 'increase' ? 'buffer-health-increase' : (gameService.stats.actionHealth === 'decrease' ? 'buffer-health-decrease' : '')">
+    </ion-progress-bar>
+    <ion-icon name="radio-button-off" [style.opacity]="highlightedStats['health'] || 0"></ion-icon>
   </div>
-  <div class="stat-bar">
-    <div class="stat-fill" [class.increase]="effect === 'increase'" [class.decrease]="effect === 'decrease'"
-      [style.height.%]="value"></div>
+
+  <div class="box-attribute">
+    <h3>🧠</h3>
+    <ion-progress-bar [buffer]="gameService.stats.bufferLogic" [value]="gameService.stats.logic" class="vertical-progress"
+      [ngClass]="gameService.stats.actionLogic === 'increase' ? 'buffer-logic-increase' : (gameService.stats.actionLogic === 'decrease' ? 'buffer-logic-decrease' : '')">
+    </ion-progress-bar>
+    <ion-icon name="radio-button-off" [style.opacity]="highlightedStats['logic'] || 0"></ion-icon>
+  </div>
+
+  <div class="box-attribute">
+    <h3>🙏</h3>
+    <ion-progress-bar [buffer]="gameService.stats.bufferBelief" [value]="gameService.stats.belief" class="vertical-progress"
+      [ngClass]="gameService.stats.actionBelief === 'increase' ? 'buffer-belief-increase' : (gameService.stats.actionBelief === 'decrease' ? 'buffer-belief-decrease' : '')">
+    </ion-progress-bar>
+    <ion-icon name="radio-button-off" [style.opacity]="highlightedStats['belief'] || 0"></ion-icon>
+  </div>
+
+  <div class="box-attribute">
+    <h3>🌌</h3>
+    <ion-progress-bar [buffer]="gameService.stats.bufferReality" [value]="gameService.stats.reality" class="vertical-progress"
+      [ngClass]="gameService.stats.actionReality === 'increase' ? 'buffer-reality-increase' : (gameService.stats.actionReality === 'decrease' ? 'buffer-reality-decrease' : '')">
+    </ion-progress-bar>
+    <ion-icon name="radio-button-off" [style.opacity]="highlightedStats['reality'] || 0"></ion-icon>
   </div>
 </div>
 

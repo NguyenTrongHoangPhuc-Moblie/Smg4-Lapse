@@ -1,9 +1,9 @@
 <!-- card-swipe.component.html -->
 <div class="card-wrap">
   <ion-card-content class="ion-text-center">
-      {{ card.description }}
+      <h1>{{ card.description }}</h1>
   </ion-card-content>
-  <ion-card #cardElement>
+  <ion-card #cardElement style="border-radius: 10px">
     <ion-card-content class="ion-display-flex ion-justify-content-between">
       <div class="choice left" [style.opacity]="leftOpacity">
         {{card.leftChoice}}

@@ -13,83 +13,48 @@ ion-icon {
   width: 100%
 }
 
-.bar {
-  position: relative;
-  width: 12px;
-  height: 100%;
-  background: #ddd;
-  border-radius: 6px;
-  overflow: hidden;
+.buffer-reality-increase,
+.buffer-logic-increase,
+.buffer-health-increase,
+.buffer-belief-increase {
+  --background: rgba(0, 200, 0, 0.6) !important;
+  //background: rgba(0, 200, 0, 0.6) !important;
 }
 
-/* Lớp hiệu ứng màu xanh/đỏ */
-.bar-effect {
-  position: absolute;
-  top: 0;
-  left: 0;
-  //height: 100%;
-  width: 100%;
-  transition: height 0.6s ease;
-  z-index: 1;
+.buffer-reality-decrease,
+.buffer-logic-decrease,
+.buffer-health-decrease,
+.buffer-belief-decrease {
+  --background: rgba(200, 0, 0, 0.6) !important;
+  //background: rgba(200, 0, 0, 0.6) !important;
 }
 
-.bar-effect.increase {
-  background: rgba(0, 200, 0, 0.5);  /* xanh khi tăng */
-  opacity: 1;
+ion-progress-bar::part(stream) {
+  display: none !important;
 }
 
-.bar-effect.decrease {
-  background: rgba(200, 0, 0, 0.5);  /* đỏ khi giảm */
-  opacity: 1;
+.vertical-progress {
+  transform: rotate(-90deg);
+  width: 40px;
+  height: 10px;
+  background: #ccc;
+  border: 2px solid #000;
+  border-radius: 10px;
 }
 
-/* Thanh trắng chính */
-.bar-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  //height: 100%;
-  width: 100%;
+.vertical-progress::part(progress) {
   background: white;
-  transition: height 0.6s ease;
-  z-index: 2;
 }
 
-.stat-container {
-  display: flex;
-  flex-direction: column;
+.box {
+  width: 100%;
+  justify-content: space-around;
   align-items: center;
-  width: 50px;
-  margin: 8px;
-}
-
-.stat-label {
-  margin-top: 6px;
-  font-size: 14px;
-  text-align: center;
-}
-
-.stat-bar {
-  position: relative;
-  width: 20px;
-  height: 120px;
-  background: #e0e0e0;
-  border-radius: 8px;
-  overflow: hidden;
   display: flex;
-  align-items: flex-end;
+  margin-top: 30px;
 }
 
-.stat-fill {
-  width: 100%;
-  background: white;
-  transition: height 0.6s ease;
-}
-
-.stats-fill.increase {
-  background: linear-gradient(to top, #4caf50, #a5d6a7) //green up
-}
-
-.stats-fill.decrease {
-  background: linear-gradient(to top, #f44336, #ef9a9a); //red down
+.box-attribute {
+  display: flex;
+  align-items: center;
 }

@@ -4,13 +4,22 @@ import { PlayerStats } from "src/models/player-stats.model";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 
+
 @Injectable({ providedIn: 'root' })
 export class GameService {
     stats: PlayerStats = {
-        health: 50,
-        logic: 50,
-        belief: 50,
-        reality: 50,
+        health: 0.5,
+        logic: 0.5,
+        belief: 0.5,
+        reality: 0.5,
+        bufferHealth: 0.5,
+        bufferLogic: 0.5,
+        bufferBelief: 0.5,
+        bufferReality: 0.5,
+        actionHealth: 'increase',
+        actionLogic: 'increase',
+        actionBelief: 'increase',
+        actionReality: 'increase',
     };
 
     private lastCardId: string | null = null;
@@ -41,13 +50,6 @@ export class GameService {
         const card = choices[Math.floor(Math.random() * choices.length)];
         this.lastCardId = card.id; // lưu lại id vừa chọn
         return { ...card }; // clone để Angular nhận diện là object mới
-    }
-
-    applyEffect(effect: Effects) {
-        this.stats.health += effect.health;
-        this.stats.logic += effect.logic;
-        this.stats.belief += effect.belief;
-        this.stats.reality += effect.reality;
     }
 
     isGameOver(): boolean {
