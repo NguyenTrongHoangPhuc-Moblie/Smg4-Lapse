@@ -118,5 +118,83 @@
     "leftEffect": { "health": 0, "logic": -0.05, "belief": 0.15, "reality": -0.2 },
     "rightEffect": { "health": 0, "logic": 0.1, "belief": -0.05, "reality": 0.05 },
     "isUnlocked": true
+  },
+  {
+    "id": "11",
+    "character": "Unknown",
+    "image": "assets/image-cards/smg4.jpg",
+    "description": "SMG4 nói rằng bạn chỉ là nhân vật trong video của anh ta.",
+    "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
+    "leftChoice": "Tin",
+    "rightChoice": "Không tin",
+    "leftEffect": { "health": 0, "logic": 0, "belief": 0, "reality": 0 },
+    "rightEffect": { "health": 0, "logic": 0, "belief": 0, "reality": 0 },
+    "isUnlocked": false,
+    "type": "special",
+    "cardEvent": ["13", "14"],
+    "wasShown": false
+  },
+  {
+    "id": "12",
+    "character": "Bob",
+    "image": "assets/image-cards/smg4.jpg",
+    "description": "Uhm...",
+    "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
+    "leftChoice": "???",
+    "rightChoice": "Sao?",
+    "leftEffect": { "health": 0, "logic": 0, "belief": 0, "reality": 0 },
+    "rightEffect": { "health": 0, "logic": 0, "belief": 0, "reality": 0 },
+    "isUnlocked": false,
+    "type": "special",
+    "cardEvent": ["15", "16"],
+    "wasShown": false
+  },
+  {
+    "id": "13",
+    "character": "SMG4-1",
+    "image": "assets/image-cards/smg4.jpg",
+    "description": "SMG4 nói rằng bạn chỉ là nhân vật trong video của anh ta.",
+    "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
+    "leftChoice": "Tin",
+    "rightChoice": "Không tin",
+    "leftEffect": { "health": 0, "logic": -0.05, "belief": 0.15, "reality": -0.2 },
+    "rightEffect": { "health": 0, "logic": 0.1, "belief": -0.05, "reality": 0.05 },
+    "isUnlocked": false
+  },
+  {
+    "id": "14",
+    "character": "SMG4-2",
+    "image": "assets/image-cards/smg4.jpg",
+    "description": "SMG42 nói rằng bạn chỉ là nhân vật trong video của anh ta.",
+    "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
+    "leftChoice": "Tin",
+    "rightChoice": "Không tin",
+    "leftEffect": { "health": 0, "logic": -0.05, "belief": 0.15, "reality": -0.2 },
+    "rightEffect": { "health": 0, "logic": 0.1, "belief": -0.05, "reality": 0.05 },
+    "isUnlocked": false
+  },
+  {
+    "id": "15",
+    "character": "SMG4-3",
+    "image": "assets/image-cards/smg4.jpg",
+    "description": "SMG4 nói rằng bạn chỉ là nhân vật trong video của anh ta.",
+    "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
+    "leftChoice": "Tin",
+    "rightChoice": "Không tin",
+    "leftEffect": { "health": 0, "logic": -0.05, "belief": 0.15, "reality": -0.2 },
+    "rightEffect": { "health": 0, "logic": 0.1, "belief": -0.05, "reality": 0.05 },
+    "isUnlocked": false
+  },
+  {
+    "id": "16",
+    "character": "SMG4-4",
+    "image": "assets/image-cards/smg4.jpg",
+    "description": "SMG4 nói rằng bạn chỉ là nhân vật trong video của anh ta.",
+    "conversation": "Bạn nghĩ sao nếu làm thêm một bát Spaghetti nhỉ? Sẽ không có vấn đề gì đâu.",
+    "leftChoice": "Tin",
+    "rightChoice": "Không tin",
+    "leftEffect": { "health": 0, "logic": -0.05, "belief": 0.15, "reality": -0.2 },
+    "rightEffect": { "health": 0, "logic": 0.1, "belief": -0.05, "reality": 0.05 },
+    "isUnlocked": false
   }
 ]

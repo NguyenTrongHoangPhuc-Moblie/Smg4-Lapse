@@ -22,6 +22,8 @@ export class GameService {
         actionReality: 'increase',
     };
 
+    private countCard: number = 0;
+
     private lastCardId: string | null = null;
 
     private allCards: EventCard[] = [];
@@ -34,25 +36,86 @@ export class GameService {
 
     setCards(cards: EventCard[]) {
         this.allCards = cards;
+
+        const uniqueRandoms = this.getUniqueRandoms(1, this.allCards.length, this.allCards.length);
+
+        this.allCards = this.allCards.map((card, index) => {
+            if (card?.type === "special") {
+                return {
+                    ...card,
+                    random: uniqueRandoms[index] // 20 -> 100
+                };
+            }
+            return card;
+        });
+        console.log(this.allCards);
     }
 
     getRandomCard(): EventCard {
-        const unlocked = this.allCards.filter(c => c.isUnlocked);
+        // Count number card to unclock another special card
+        this.countCard += 1;
 
-        // loại bỏ card cuối cùng
-        let choices = unlocked.filter(c => c.id !== this.lastCardId);
+        for (let c of this.allCards) {
+            if (c && c.random > 0 && c.random <= this.countCard) {
+                // unlock this card
+                c.isUnlocked = true;
 
-        // nếu chỉ còn 1 card thì buộc phải lấy
-        if (choices.length === 0) {
-            choices = unlocked;
+                // unlock all cards whose id is in cardEvent
+                if (c.cardEvent && Array.isArray(c.cardEvent)) {
+                    for (let eventId of c.cardEvent) {
+                        const target = this.allCards.find(card => card?.id === eventId);
+                        if (target) {
+                            target.isUnlocked = true;
+                        }
+                    }
+                }
+            }
         }
 
-        const card = choices[Math.floor(Math.random() * choices.length)];
+        const unlocked = this.allCards.filter(c => c.isUnlocked && !c?.wasShown);
+        console.log(unlocked);
+
+        let specialIndex = unlocked.findIndex(c => c.type === "special" && !c.wasShown);
+
+        let card;
+
+        if(specialIndex !== -1) {
+            //if special exits, take it first
+            card = unlocked[specialIndex];
+            card.wasShown = true;
+        } else {
+            // loại bỏ card cuối cùng
+            let choices = unlocked.filter(c => c.id !== this.lastCardId);
+
+            // nếu chỉ còn 1 card thì buộc phải lấy
+            if (choices.length === 0) {
+                choices = unlocked;
+            }
+            card = choices[Math.floor(Math.random() * choices.length)];
+        }
+        
         this.lastCardId = card.id; // lưu lại id vừa chọn
         return { ...card }; // clone để Angular nhận diện là object mới
     }
 
     isGameOver(): boolean {
         return Object.values(this.stats).some(val => val <= 0);
+    }
+
+    getUniqueRandoms(min: number, max: number, count: number): number[] {
+        const numbers: number[] = [];
+
+        // create array [min..max]
+        for (let i = min; i <= max; i++) {
+            numbers.push(i);
+        }
+
+        // shuffle the array (Fisher-Yates)
+        for (let i = numbers.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+        }
+
+        return numbers.slice(0, count); // take the first `count` numbers
     }
 }

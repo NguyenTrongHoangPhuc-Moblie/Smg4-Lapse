@@ -7,7 +7,11 @@ export interface EventCard {
     rightChoice: string;
     leftEffect: Effects;
     rightEffect: Effects;
-    isUnlocked?: boolean;
+    isUnlocked: boolean;
+    type: string;
+    random: number;
+    cardEvent: [];
+    wasShown: boolean;
 }
 
 export interface Effects {

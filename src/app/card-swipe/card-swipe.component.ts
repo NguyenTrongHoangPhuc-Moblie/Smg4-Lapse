@@ -126,7 +126,7 @@ export class CardSwipeComponent {
         this.zone.run(() => {
           (this.gameService.stats as any)[bufferKey] += value;
         });
-        console.log((this.gameService.stats as any)[bufferKey]);
+        
         // 2. Commit real value after 400ms
         setTimeout(() => {
           this.zone.run(() => {  // 👈 force Angular update
