@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Effects, EventCard } from "../models/event-card.model";
+import { EventCard } from "../models/event-card.model";
 import { PlayerStats } from "src/models/player-stats.model";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
@@ -28,6 +28,8 @@ export class GameService {
 
     private allCards: EventCard[] = [];
 
+    private eventQueue: EventCard[] = [];
+
     constructor(private http: HttpClient) { }
 
     loadCards(): Observable<EventCard[]> {
@@ -37,7 +39,7 @@ export class GameService {
     setCards(cards: EventCard[]) {
         this.allCards = cards;
 
-        const uniqueRandoms = this.getUniqueRandoms(1, this.allCards.length, this.allCards.length);
+        const uniqueRandoms = this.getUniqueRandoms(5, this.allCards.length, this.allCards.length);
 
         this.allCards = this.allCards.map((card, index) => {
             if (card?.type === "special") {
@@ -48,12 +50,19 @@ export class GameService {
             }
             return card;
         });
-        console.log(this.allCards);
     }
 
     getRandomCard(): EventCard {
         // Count number card to unclock another special card
         this.countCard += 1;
+
+        if(this.eventQueue.length > 0) {
+            const next = this.eventQueue.shift()!;
+            if(!next.wasShown) {
+                next.wasShown = true;
+                return next;
+            }
+        }
 
         for (let c of this.allCards) {
             if (c && c.random > 0 && c.random <= this.countCard) {
@@ -73,7 +82,6 @@ export class GameService {
         }
 
         const unlocked = this.allCards.filter(c => c.isUnlocked && !c?.wasShown);
-        console.log(unlocked);
 
         let specialIndex = unlocked.findIndex(c => c.type === "special" && !c.wasShown);
 
@@ -117,5 +125,24 @@ export class GameService {
         }
 
         return numbers.slice(0, count); // take the first `count` numbers
+    }
+
+    handleEvent(card: EventCard) {
+        if (card.type === "event" && card.cardEvent?.length && card.wasShown === false) {
+            //unclock event children
+            console.log(card);
+            const original = this.allCards.find(c => c.id === card.id);
+
+            if(!original) return;
+
+            card.cardEvent.forEach(id => {
+                const child = this.allCards.find(c => c.id === id);
+                if(child) {
+                    child.isUnlocked = true;
+                    this.eventQueue.push(child);
+                }
+            });
+            original.wasShown = true;
+        }
     }
 }

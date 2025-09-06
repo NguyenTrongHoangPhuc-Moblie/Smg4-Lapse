@@ -93,7 +93,10 @@
     "rightChoice": "Từ chối",
     "leftEffect": { "health": -0.05, "logic": 0.05, "belief": 0.05, "reality": 0 },
     "rightEffect": { "health": 0, "logic": -0.05, "belief": -0.05, "reality": 0.05 },
-    "isUnlocked": true
+    "isUnlocked": true,
+    "type": "event",
+    "cardEvent": ["9", "10"],
+    "wasShown": false
   },
   {
     "id": "9",
@@ -105,7 +108,7 @@
     "rightChoice": "Không",
     "leftEffect": { "health": -0.05, "logic": -0.05, "belief": 0.1, "reality": -0.05 },
     "rightEffect": { "health": 0, "logic": 0.05, "belief": -0.05, "reality": 0 },
-    "isUnlocked": true
+    "isUnlocked": false
   },
   {
     "id": "10",
@@ -117,7 +120,7 @@
     "rightChoice": "Không tin",
     "leftEffect": { "health": 0, "logic": -0.05, "belief": 0.15, "reality": -0.2 },
     "rightEffect": { "health": 0, "logic": 0.1, "belief": -0.05, "reality": 0.05 },
-    "isUnlocked": true
+    "isUnlocked": false
   },
   {
     "id": "11",

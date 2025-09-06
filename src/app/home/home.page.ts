@@ -58,10 +58,19 @@ export class HomePage {
 
   onCardSwiped(event: { direction: 'left' | 'right' | null, card: any }, index: number) {
     if (!event.direction) return;
+
+    const card = event.card;
+
+    //handle event branching
+    this.gameService.handleEvent(card);
+
+    const baseCard = this.gameService.getRandomCard();
+
     // Replace card after swipe
     const nextCard = {
-      ...this.gameService.getRandomCard(),
-      uid: Date.now().toString()
+      ...baseCard,
+      uid: Date.now().toString(),
+      id: baseCard.id
     };
 
     setTimeout(() => {
